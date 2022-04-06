@@ -25,4 +25,7 @@ class Network:
             a = sigmoid(np.dot(w,a) + b) # Perform the sigmoid activation function to output the "neurons" activation after processing
         return a
 
-
+    def stochasticGradientDescent(self,):
+        """Finding Global Minima -> in this case minimizing the cost function. Stochastic Gradient Descent is designed such that
+        we can better avoid getting caught in local minima to find the global minima."""
+        

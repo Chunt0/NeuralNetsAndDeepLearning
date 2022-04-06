@@ -58,3 +58,9 @@ def trainInput(file):
 
 def sigmoid(z):
     return 1.0/(1.0 + np.exp(-z))
+
+def relu(x):
+    if x <= 0:
+        return 0
+    else:
+        return x
