@@ -25,7 +25,7 @@ class Network:
             a = sigmoid((np.dot(w,a) + b)) # Perform the ReLU activation function to output the "neurons" activation after processing
         return a
 
-    def stochasticGradientDescent(self,):
+    def stochasticGradientDescent(self, epochs, mini_batch_size, eta, test_data=None):
         """Finding Global Minima -> in this case minimizing the cost function. Stochastic Gradient Descent is designed such that
         we can better avoid getting caught in local minima to find the global minima."""
-
+        
