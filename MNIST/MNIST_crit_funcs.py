@@ -49,7 +49,7 @@ def trainInput(file):
             image[j]= int(char)        
         
         label = image.pop(0)
-        label_image = (label, image)
+        label_image = (image, label)
         data.append(label_image)
 
     return data
