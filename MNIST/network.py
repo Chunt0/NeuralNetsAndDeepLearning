@@ -1,3 +1,6 @@
+# [*] Christopher Hunt
+# [*] network.py
+
 import numpy as np
 from MNIST_crit_funcs import sigmoid
 
