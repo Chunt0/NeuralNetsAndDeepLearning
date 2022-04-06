@@ -2,7 +2,7 @@
 # [*] network.py
 
 import numpy as np
-from MNIST_crit_funcs import sigmoid
+from MNIST_crit_funcs import relu
 
 
 class Network:
@@ -22,10 +22,10 @@ class Network:
         
         # Both the weight and bias matrices have the same amount of layers (in this instance it is two, in each layer the matrices have the same rows but different collumn amount)
         for b, w in zip(self.biases, self.weights): 
-            a = sigmoid(np.dot(w,a) + b) # Perform the sigmoid activation function to output the "neurons" activation after processing
+            a = relu((np.dot(w,a) + b)) # Perform the sigmoid activation function to output the "neurons" activation after processing
         return a
 
     def stochasticGradientDescent(self,):
         """Finding Global Minima -> in this case minimizing the cost function. Stochastic Gradient Descent is designed such that
         we can better avoid getting caught in local minima to find the global minima."""
-        
+
