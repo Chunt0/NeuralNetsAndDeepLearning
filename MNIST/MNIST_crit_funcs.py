@@ -22,9 +22,9 @@ def testInput(file):
         for j, char in enumerate(image):
             if j == last:
                 image[j] = image[j].replace('\n', '')
-            image[j]= int(char)
+            image[j]= int(char)/255
 
-        data.append(image)
+        data.append(np.array(image).reshape((784,1)))
 
     return data
 
@@ -46,9 +46,15 @@ def trainInput(file):
         for j, char in enumerate(image):
             if j == last:
                 image[j] = image[j].replace('\n', '')
-            image[j]= int(char)        
-        
-        label = image.pop(0)
+            image[j]= int(char)/255        
+
+        one_hot = np.zeros((10,1))  
+        label = int(image.pop(0)*255)
+        one_hot[label-1] = 1
+        label = one_hot
+
+
+        image = np.array(image).reshape((784,1))
         label_image = (image, label)
         data.append(label_image)
 
@@ -64,3 +70,11 @@ def relu(x):
         return 0
     else:
         return x
+
+
+
+test = testInput("/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/test.csv")
+train = trainInput("/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/train.csv")
+
+
+
