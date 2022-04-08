@@ -11,5 +11,6 @@ net = Network(size)
 file2 = "/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/train.csv"
 train = trainInput(file2)
 
-print(f"Networks output: {net.feedForward(train[6][0])}")
-print(f"Correct output: {train[6][1]}")
+print(f"Networks output: \n{net.feedForward(train[6][0])}")
+print(f"Correct output: \n{train[6][1]}")
+
