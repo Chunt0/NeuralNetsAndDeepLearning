@@ -8,15 +8,13 @@ import numpy as np
 def testInput(file):
     """Returns a list of lists of pixel values"""
 
-    temp_data = []
     data = []
 
     with open(file) as f:
         line = f.readlines()
-        temp_data.append(line)
     
-    for i in range(1, len(temp_data[0])):
-        image = temp_data[0][i].split(',')
+    for i in range(1, len(line)):
+        image = line[i].split(',')
         last = len(image)-1
 
         for j, char in enumerate(image):
@@ -25,22 +23,20 @@ def testInput(file):
             image[j]= int(char)/255
 
         data.append(np.array(image).reshape((784,1)))
-
+    
     return data
 
 def trainInput(file):
     """Returns a tuple - the first value is the label, the second a list of 
     pixel values for that digit"""
 
-    temp_data = []
     data = []
 
     with open(file) as f:
         line = f.readlines()
-        temp_data.append(line)
     
-    for i in range(1, len(temp_data[0])):
-        image = temp_data[0][i].split(',')
+    for i in range(1, len(line)):
+        image = line[i].split(',')
         last = len(image)-1
         
         for j, char in enumerate(image):
