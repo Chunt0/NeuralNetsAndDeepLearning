@@ -58,8 +58,11 @@ def trainInput(file):
 
 # Activation function
 
-def sigmoid(z):
-    return 1.0/(1.0 + np.exp(-z))
+def sigmoid(x):
+    return 1.0/(1.0 + np.exp(-x))
+
+def deriv_sigmoid(x):
+    return (np.exp(-x)/((1+np.exp(-x))**2))
 
 def relu(x):
     return np.maximum(0, x)
