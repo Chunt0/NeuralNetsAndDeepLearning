@@ -55,8 +55,8 @@ def trainInput(file):
 
 
         image = np.array(image).reshape((784,1))
-        label_image = (image, label)
-        data.append(label_image)
+        image_label = (image, label)
+        data.append(image_label)
 
     return data
 
@@ -66,15 +66,4 @@ def sigmoid(z):
     return 1.0/(1.0 + np.exp(-z))
 
 def relu(x):
-    if x <= 0:
-        return 0
-    else:
-        return x
-
-
-
-test = testInput("/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/test.csv")
-train = trainInput("/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/train.csv")
-
-
-
+    return np.maximum(0, x)
