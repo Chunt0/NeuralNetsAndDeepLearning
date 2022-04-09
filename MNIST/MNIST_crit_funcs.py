@@ -5,28 +5,7 @@ import numpy as np
 
 # Functions to import and format MNIST train and test data
 
-def testInput(file):
-    """Returns a list of lists of pixel values"""
-
-    data = []
-
-    with open(file) as f:
-        line = f.readlines()
-    
-    for i in range(1, len(line)):
-        image = line[i].split(',')
-        last = len(image)-1
-
-        for j, char in enumerate(image):
-            if j == last:
-                image[j] = image[j].replace('\n', '')
-            image[j]= int(char)/255
-
-        data.append(np.array(image).reshape((784,1)))
-    
-    return np.array(data).reshape((28000,784))
-
-def trainInput(file):
+def fileInput(file, size):
     """Returns a tuple - the first value is the label, the second a list of 
     pixel values for that digit"""
 
@@ -54,7 +33,10 @@ def trainInput(file):
         image = np.array(image).reshape((784,1))
         image_data.append(image)
         label_data.append(label)
-    return np.array(image_data).reshape((42000,784)), np.array(label_data).reshape((42000,10))
+    image_data = np.array(image_data).reshape((size,784))
+    label_data = np.array(label_data).reshape((size,10))
+
+    return image_data, label_data 
 
 # Activation functions
 
