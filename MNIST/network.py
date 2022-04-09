@@ -2,7 +2,7 @@
 # [*] network.py
 
 import numpy as np
-from MNIST_crit_funcs import sigmoid, relu
+from MNIST_crit_funcs import sigmoid, relu, softmax
 
 
 class Network:
@@ -21,8 +21,14 @@ class Network:
         """Return the output of the network if "a" is input"""
         
         # Both the weight and bias matrices have the same amount of layers (in this instance it is two, in each layer the matrices have the same rows but different collumn amount)
+        last = len(self.biases)-1
+        count = 0
         for b, w in zip(self.biases, self.weights): 
-            a = sigmoid((np.dot(w,a) + b)) # Perform the sigmoid activation function to output the "neurons" activation after processing
+            if(count != last):
+                a = relu((np.dot(w,a) + b)) # Perform the sigmoid activation function to output the "neurons" activation after processing
+                count += 1
+            else:
+                a = softmax(np.dot(w,a)+b)
         return a
 
     def stochasticGradientDescent(self, epochs, mini_batch_size, eta, test_data=None):

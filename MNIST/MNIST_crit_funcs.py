@@ -24,13 +24,14 @@ def testInput(file):
 
         data.append(np.array(image).reshape((784,1)))
     
-    return data
+    return np.array(data).reshape((28000,784))
 
 def trainInput(file):
     """Returns a tuple - the first value is the label, the second a list of 
     pixel values for that digit"""
 
-    data = []
+    image_data = []
+    label_data = []
 
     with open(file) as f:
         line = f.readlines()
@@ -51,12 +52,11 @@ def trainInput(file):
 
 
         image = np.array(image).reshape((784,1))
-        image_label = (image, label)
-        data.append(image_label)
+        image_data.append(image)
+        label_data.append(label)
+    return np.array(image_data).reshape((42000,784)), np.array(label_data)
 
-    return data
-
-# Activation function
+# Activation functions
 
 def sigmoid(x):
     return 1.0/(1.0 + np.exp(-x))
@@ -66,3 +66,7 @@ def deriv_sigmoid(x):
 
 def relu(x):
     return np.maximum(0, x)
+
+def softmax(x):
+    e = np.exp(x)
+    return e/(sum(e))
