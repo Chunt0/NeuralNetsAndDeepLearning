@@ -6,8 +6,8 @@ import numpy as np
 # Functions to import and format MNIST train and test data
 
 def fileInput(file, size):
-    """Returns a tuple - the first value is the label, the second a list of 
-    pixel values for that digit"""
+    """Returns a tuple - the first value is the image with a shape of (size, 784), the 
+    second a one hot encoded label of shape (size, 10)"""
 
     image_data = []
     label_data = []
