@@ -1,6 +1,7 @@
 # [*] CHRISTOPHER HUNT
 # [*] network.py
 
+import random
 import numpy as np
 from MNIST_crit_funcs import sigmoid, relu, softmax
 
@@ -31,7 +32,8 @@ class Network:
                 a = softmax(np.dot(w,a)+b)
         return a
 
-    def stochasticGradientDescent(self, epochs, mini_batch_size, eta, test_data=None):
+    def stochasticGradientDescent(self, training_data, epochs, mini_batch_size, eta, test_data=None):
         """Finding Global Minima -> in this case minimizing the cost function. Stochastic Gradient Descent is designed such that
         we can better avoid getting caught in local minima to find the global minima."""
-        
+        if test_data: n_test = len(test_data)
+        pass

@@ -54,7 +54,7 @@ def trainInput(file):
         image = np.array(image).reshape((784,1))
         image_data.append(image)
         label_data.append(label)
-    return np.array(image_data).reshape((42000,784)), np.array(label_data)
+    return np.array(image_data).reshape((42000,784)), np.array(label_data).reshape((42000,10))
 
 # Activation functions
 

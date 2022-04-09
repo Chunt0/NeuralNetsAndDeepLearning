@@ -1,3 +1,4 @@
+import random
 from network import Network
 from MNIST_crit_funcs import testInput, trainInput
 import numpy as np
@@ -11,4 +12,7 @@ test = testInput(file1)
 file2 = "/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/train.csv"
 train_image, train_label = trainInput(file2)
 
-print(np.transpose(net.feedForward(np.transpose(train_image)))[40000])
+print(train_label[6])
+train_label = random.shuffle(train_label)
+print(train_label[6])
+#print(np.transpose(net.feedForward(np.transpose(train_image)))[40000])
