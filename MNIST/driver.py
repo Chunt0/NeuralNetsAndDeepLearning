@@ -6,13 +6,12 @@ import numpy as np
 size = (784,15,15,10)
 net = Network(size)
 
-file1 = "/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/test.csv"
-test = testInput(file1)
+file1 = "/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/mnist_test.csv"
+test_image, test_label = trainInput(file1,10000)
 
-file2 = "/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/train.csv"
-train_image, train_label = trainInput(file2)
+file2 = "/home/chunt/VScode/Python/NeuralNetsAndDeepLearning/MNIST/MNISTtraintest/mnist_train.csv"
+train_image, train_label = trainInput(file2,60000)
 
-print(train_label[6])
-train_label = random.shuffle(train_label)
-print(train_label[6])
-#print(np.transpose(net.feedForward(np.transpose(train_image)))[40000])
+
+print(f"test_label[0]: {test_image.T.shape}")
+print(f"train_label[0]: {train_image.T.shape}")
