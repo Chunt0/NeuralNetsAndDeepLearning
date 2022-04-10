@@ -38,13 +38,10 @@ class Network:
         function as the activation function on all layers"""
         for b, w in zip(self.biases, self.weights):
             a = sigmoid(np.dot(w,a)+b)
-            return a
+        return a
 
     def stochasticGradientDescent(self, training_data, epochs, mini_batch_size, eta, test_data=None):
         """Finding Global Minima -> in this case minimizing the cost function. Stochastic Gradient Descent is designed such that
         we can better avoid getting caught in local minima to find the global minima."""
         if test_data: n_test = len(test_data)
-        pass
-
-    def selectionMenu(self):
         pass
