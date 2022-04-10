@@ -16,4 +16,4 @@ train_image, train_label = fileInput(train_file,60000)
 print(f"test_label[0]: {test_image.T.shape}")
 print(f"train_label[0]: {train_image.T.shape}")
 
-# Test
+# Test test
