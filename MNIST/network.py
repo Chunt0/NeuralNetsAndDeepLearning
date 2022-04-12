@@ -20,8 +20,8 @@ class Network:
         self.input_size = None
         self.image = None
         self.label = None
-        self.epochs = None
-        self.eta = None
+        self.epochs = 100
+        self.eta = 2
 
     def feedForwardRelu(self, a):
         """
@@ -65,12 +65,25 @@ class Network:
         return mini_batches # [ [np.array: batch_size X 784],... n ] where n = input_size/mini_batch_size
 
     def updateMiniBatch(self, mini_batch):
-        pass
+        """Update the network's weights and biases by applying
+        gradient descent using backpropagation to a single mini batch.
+        The "mini_batch" is a list of tuples "(x, y)", and "eta"
+        is the learning rate."""
+        nabla_b = [np.zeros(b.shape) for b in self.biases]
+        nabla_w = [np.zeros(w.shape) for w in self.weights]
+        for x, y in mini_batch:
+            delta_nabla_b, delta_nabla_w = self.backprop(x, y)
+            nabla_b = [nb+dnb for nb, dnb in zip(nabla_b, delta_nabla_b)]
+            nabla_w = [nw+dnw for nw, dnw in zip(nabla_w, delta_nabla_w)]
+        self.weights = [w-(self.eta/len(mini_batch))*nw 
+                        for w, nw in zip(self.weights, nabla_w)]
+        self.biases = [b-(self.eta/len(mini_batch))*nb 
+                       for b, nb in zip(self.biases, nabla_b)]
 
     def evaluate(self):
         pass
 
-    def stochasticGradientDescent(self, training_data, epochs, mini_batch_size, eta, test_data=None):
+    def stochasticGradientDescent(self):
         """
         Finding Global Minima -> in this case minimizing the cost function. Stochastic Gradient Descent is designed such that
         we can better avoid getting caught in local minima to find the global minima.
@@ -78,11 +91,8 @@ class Network:
         for count in range(0, self.epochs):
             mini_batches = self.makeMiniBatch()
             for mini_batch in mini_batches:
-                self.updateMiniBatch(mini_batch, self.eta) #--> This is where the feed forward, back prop, then update of weights and biases occurs.
-            if test_data:
-                print(f"Epoch {count}: ::evaluation goes here::\n")
-            else:
-                print(f"Epoch {count} complete\n")
+                self.updateMiniBatch(mini_batch) #--> This is where the feed forward, back prop, then update of weights and biases occurs.
+            print(count)
 
 ##########################################################################################################
 
@@ -107,8 +117,7 @@ class Network:
                     print(self.feedForwardSigmoid(self.image).shape)
                 elif(selection == 3):
                     # Developers Options is a space to add dev tests of program functionality.
-                    mini_batches = self.makeMiniBatch()
-                    print(f"len(mini_batches): {len(mini_batches)}\nmini_batches[0].shape: {mini_batches[0]}\n")
+                    self.stochasticGradientDescent()
                 elif(selection == 4):
                     print("\nGood Bye!")
                     on = False
