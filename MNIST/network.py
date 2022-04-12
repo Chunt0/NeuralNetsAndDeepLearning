@@ -72,7 +72,7 @@ class Network:
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
         for x, y in mini_batch:
-            delta_nabla_b, delta_nabla_w = self.backprop(x, y)
+            delta_nabla_b, delta_nabla_w = self.backprop(x, y) # The hard work happens in .backprop()
             nabla_b = [nb+dnb for nb, dnb in zip(nabla_b, delta_nabla_b)]
             nabla_w = [nw+dnw for nw, dnw in zip(nabla_w, delta_nabla_w)]
         self.weights = [w-(self.eta/len(mini_batch))*nw 
@@ -80,6 +80,9 @@ class Network:
         self.biases = [b-(self.eta/len(mini_batch))*nb 
                        for b, nb in zip(self.biases, nabla_b)]
 
+    def backprop(self):
+        pass
+    
     def evaluate(self):
         pass
 
