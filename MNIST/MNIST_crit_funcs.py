@@ -1,9 +1,9 @@
-# [*] CHRISTOPHER HUNT
-# [*] MNIST_crit_funcs.py
+# CHRISTOPHER HUNT
+# MNIST_crit_funcs.py
 
 import numpy as np
 
-# Functions to import and format MNIST train and test data
+#[*] Functions to import and format MNIST train and test data
 
 def fileInput(file, size):
     """Returns a tuple - the first value is the image with a shape of (size, 784), the 
@@ -36,7 +36,7 @@ def fileInput(file, size):
     image_data = np.array(image_data).reshape((size,784))
     label_data = np.array(label_data).reshape((size,10))
 
-    return image_data, label_data 
+    return image_data.T, label_data.T 
 
 # Activation functions
 
