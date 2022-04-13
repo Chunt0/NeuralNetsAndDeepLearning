@@ -120,7 +120,7 @@ class Network:
                     print(self.feedForwardSigmoid(self.image).shape)
                 elif(selection == 3):
                     # Developers Options is a space to add dev tests of program functionality.
-                    self.stochasticGradientDescent()
+                    pass
                 elif(selection == 4):
                     print("\nGood Bye!")
                     on = False
